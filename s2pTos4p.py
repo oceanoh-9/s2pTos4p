@@ -111,6 +111,15 @@ def s2pfileTos4pfile(path_21, path_31, path_32, path_41, path_42, path_43, fileN
 
 
 if __name__ == "__main__":
+    """
+    please input 6 s2p files' path
+    path_Port2ToPort1 is the path of s2p file which contains S11, S12, S21, S22
+    path_Port3ToPort1 is the path of s2p file which contains S11, S13, S31, S33
+    path_Port3ToPort2 is the path of s2p file which contains S22, S23, S32, S33
+    path_Port4ToPort1 is the path of s2p file which contains S11, S14, S41, S44
+    path_Port4ToPort2 is the path of s2p file which contains S22, S24, S42, S44
+    path_Port4ToPort3 is the path of s2p file which contains S33, S34, S43, S44
+    """
     path_Port2ToPort1 = "21.s2p"
     path_Port3ToPort1 = "31.s2p"
     path_Port3ToPort2 = "32.s2p"
