@@ -26,17 +26,11 @@ def s2pfileTos4pfile(path_21: str, path_31: str, path_32: str, path_41: str, pat
         the unit of frequency, default is "Hz", can be "GHz", "MHz", "kHz"
     """
     network_Port2ToPort1 = rf.Network(path_21)
-    network_Port2ToPort1.frequency.unit = unit
     network_Port3ToPort1 = rf.Network(path_31)
-    network_Port3ToPort1.frequency.unit = unit
     network_Port3ToPort2 = rf.Network(path_32)
-    network_Port3ToPort2.frequency.unit = unit
     network_Port4ToPort1 = rf.Network(path_41)
-    network_Port4ToPort1.frequency.unit = unit
     network_Port4ToPort2 = rf.Network(path_42)
-    network_Port4ToPort2.frequency.unit = unit
     network_Port4ToPort3 = rf.Network(path_43)
-    network_Port4ToPort3.frequency.unit = unit
 
 
     # check if these snp file have same number of frequency
@@ -133,6 +127,7 @@ def s2pfileTos4pfile(path_21: str, path_31: str, path_32: str, path_41: str, pat
 
     # create a 4-port Network object by input S4P and frequency
     network_4port = rf.Network(s=S4P, f=frequency, z0=50)
+    network_4port.frequency.unit = unit
     network_4port.write_touchstone(fileNameToSave, form = 'ma')
     print("write S4P to " + fileNameToSave + ".s4p successfully")
     return
@@ -148,12 +143,12 @@ if __name__ == "__main__":
     path_Port4ToPort2 is the path of s2p file which contains S22, S24, S42, S44
     path_Port4ToPort3 is the path of s2p file which contains S33, S34, S43, S44
     """
-    path_Port2ToPort1 = "21.s2p"
-    path_Port3ToPort1 = "31.s2p"
-    path_Port3ToPort2 = "32.s2p"
-    path_Port4ToPort1 = "41.s2p"
-    path_Port4ToPort2 = "42.s2p"
-    path_Port4ToPort3 = "43.s2p"
+    path_Port2ToPort1 = "./data/21.s2p"
+    path_Port3ToPort1 = "./data/31.s2p"
+    path_Port3ToPort2 = "./data/32.s2p"
+    path_Port4ToPort1 = "./data/41.s2p"
+    path_Port4ToPort2 = "./data/42.s2p"
+    path_Port4ToPort3 = "./data/43.s2p"
 
     filename = "4port"
     s2pfileTos4pfile(
@@ -164,4 +159,6 @@ if __name__ == "__main__":
         path_Port4ToPort2,
         path_Port4ToPort3,
         filename,
+        unit="kHz"
+
     )
