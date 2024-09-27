@@ -2,13 +2,41 @@ import skrf as rf
 import numpy as np
 
 
-def s2pfileTos4pfile(path_21, path_31, path_32, path_41, path_42, path_43, fileNameToSave):
+def s2pfileTos4pfile(path_21: str, path_31: str, path_32: str, path_41: str, path_42: str, path_43: str, 
+                     fileNameToSave: str, unit: str="Hz"):
+    """
+    This function is used to convert 6 s2p files to a 4-port s4p file
+    ----------------
+    parameters:
+    path_21: str
+        path of s2p file which contains S11, S12, S21, S22
+    path_31: str
+        path of s2p file which contains S11, S13, S31, S33
+    path_32: str
+        path of s2p file which contains S22, S23, S32, S33
+    path_41: str
+        path of s2p file which contains S11, S14, S41, S44
+    path_42: str
+        path of s2p file which contains S22, S24, S42, S44
+    path_43: str
+        path of s2p file which contains S33, S34, S43, S44
+    fileNameToSave: str
+        the name of output s4p file
+    frequency: str
+        the unit of frequency, default is "Hz", can be "GHz", "MHz", "kHz"
+    """
     network_Port2ToPort1 = rf.Network(path_21)
+    network_Port2ToPort1.frequency.unit = unit
     network_Port3ToPort1 = rf.Network(path_31)
+    network_Port3ToPort1.frequency.unit = unit
     network_Port3ToPort2 = rf.Network(path_32)
+    network_Port3ToPort2.frequency.unit = unit
     network_Port4ToPort1 = rf.Network(path_41)
+    network_Port4ToPort1.frequency.unit = unit
     network_Port4ToPort2 = rf.Network(path_42)
+    network_Port4ToPort2.frequency.unit = unit
     network_Port4ToPort3 = rf.Network(path_43)
+    network_Port4ToPort3.frequency.unit = unit
 
 
     # check if these snp file have same number of frequency
